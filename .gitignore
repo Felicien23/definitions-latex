@@ -1,0 +1,51 @@
+# =====================================================================
+# LaTeX build artefacts
+# =====================================================================
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.dvi
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.toc
+*.vrb
+*.xdv
+
+# Bibliography
+*-blx.bib
+*-blx.aux
+
+# Build directories
+_minted-*/
+build/
+out/
+
+# Uncomment to keep PDFs out of the repo
+# *.pdf
+
+# =====================================================================
+# OS / editor noise
+# =====================================================================
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+.vscode/
+.idea/

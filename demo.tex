@@ -1,0 +1,63 @@
+% =====================================================================
+% demo.tex
+% Minimal example exercising the definitions-latex package.
+% Build with: latexmk -pdf demo.tex
+% =====================================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% Load every shortcut in one go
+\usepackage{definitions}
+
+\title{\texttt{definitions-latex} -- demo}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Differentials and partial derivatives}
+\[
+    \fracdif{f}{x}, \qquad
+    \dift,         \qquad
+    \partialFrac{f}{x}, \qquad
+    \parfrac{u}{t}.
+\]
+
+\section{Vectors}
+The Cartesian basis: $\ex,\ \ey,\ \ez$.\\
+Cylindrical: $\er,\ \ep,\ \ez$.\\
+Spherical: $\er,\ \et,\ \ep$.
+
+\section{Brackets and norms}
+\[
+    \Abs{x},\quad \nor{\bm{v}},\quad \mean{X},\quad
+    \Par{a + b},\quad \Cro{1,\, n}.
+\]
+
+\section{Integrals}
+\[
+    \intt f(x,y,z)\, \diftt
+\]
+
+\section{Operators}
+$\esp[X]$, $\var(X)$, $\sgn(x)$, $\rank(M)$, $\rmse$, $\pvalue$.
+
+\section{Units}
+Energies in \si{\eV}, lengths in \si{\angstrom}, pressures in \si{\bar},
+heat in \si{\calorie}.
+
+\section{Plasma physics shortcuts}
+$\Zeff,\ \prad,\ \vloop,\ \Iref,\ \YDsC,\ \YOsO$.
+
+\section{Code listings}
+Inline Python: \pythoncode{import numpy as np}.\\
+Inline MATLAB: \matlabcode{x = linspace(0, 1, 100);}.\\
+Inline C++: \cppcode{constexpr int n = 10;}.
+
+\section{Roman numerals and the \CC{} logo}
+Chapter \rom{4}, written in \CC{}.
+
+\end{document}

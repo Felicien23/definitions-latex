@@ -1,0 +1,32 @@
+% =====================================================================
+% definitions.sty
+% Personal collection of LaTeX shortcuts: math commands, operators,
+% custom units, and code-listing styles.
+% =====================================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{definitions}[2026/05/06 v1.0.0 Personal LaTeX definitions]
+
+% ---------------------------------------------------------------------
+% Required packages
+% ---------------------------------------------------------------------
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{bm}
+\RequirePackage{ifthen}
+\RequirePackage{xcolor}
+\RequirePackage{listings}
+\RequirePackage{hyperref}
+\RequirePackage{siunitx}
+\RequirePackage[version=4]{mhchem}
+
+% ---------------------------------------------------------------------
+% Load each module. Order matters: operators and units before
+% Commandes (which can rely on them); LanguageStyle last because it
+% only adds listing styles.
+% ---------------------------------------------------------------------
+\input{Operator.tex}
+\input{Units.tex}
+\input{Commandes.tex}
+\input{LanguageStyle.tex}
+
+\endinput

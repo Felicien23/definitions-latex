@@ -1,0 +1,24 @@
+# =====================================================================
+# .gitlab-ci.yml
+# Builds demo.tex on every push to verify that the package compiles
+# cleanly. The resulting PDF is published as a job artifact.
+# =====================================================================
+
+image: texlive/texlive:latest
+
+stages:
+  - build
+
+build_demo:
+  stage: build
+  script:
+    - latexmk -pdf -interaction=nonstopmode -halt-on-error demo.tex
+  artifacts:
+    name: "demo-${CI_COMMIT_SHORT_SHA}"
+    paths:
+      - demo.pdf
+    expire_in: 1 week
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_PIPELINE_SOURCE == "web"

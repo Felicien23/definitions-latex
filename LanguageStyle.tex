@@ -1,0 +1,125 @@
+% =====================================================================
+% LanguageStyle.tex
+% Code listing styles for Python, MATLAB, and C++.
+% Part of the definitions-latex package.
+%
+% Required packages: listings, xcolor
+% =====================================================================
+
+% ---------------------------------------------------------------------
+% Custom colours
+% ---------------------------------------------------------------------
+\definecolor{darkWhite}{rgb}{0.94, 0.94, 0.94}
+\definecolor{MyDarkGreen}{rgb}{0.0, 0.4, 0.0}
+\definecolor{MyPurple}{rgb}{0.5, 0.0, 0.5}
+\definecolor{MyTurquoise}{RGB}{0, 139, 139}
+\definecolor{listinggray}{gray}{0.9}
+\definecolor{lbcolor}{rgb}{0.9, 0.9, 0.9}
+\definecolor{Darkgreen}{rgb}{0, 0.4, 0}
+
+% ---------------------------------------------------------------------
+% Python listing style
+% ---------------------------------------------------------------------
+\lstdefinestyle{pythonstyle}{
+    language=Python,
+    frame=single,
+    basicstyle=\small\ttfamily,
+    keywordstyle=\color{blue},
+    stringstyle=\color{purple},
+    commentstyle=\color{MyDarkGreen}\slshape,
+    showstringspaces=false,
+    tabsize=4,
+    numbers=left,
+    numberstyle=\tiny\color{blue},
+    stepnumber=1,
+    breaklines=true,
+    breakatwhitespace=true,
+    captionpos=b,
+    extendedchars=true,
+    keepspaces=true,
+    morekeywords={lambda, import, from, class},
+    emph={self, __init__, if, else, return},
+    emphstyle={\color{orange}},
+}
+
+% ---------------------------------------------------------------------
+% MATLAB listing style
+% ---------------------------------------------------------------------
+\lstloadlanguages{Matlab}%
+\lstdefinestyle{matlabstyle}{
+    language=Matlab,
+    frame=single,
+    basicstyle=\small\ttfamily,
+    keywordstyle=[1]\color{blue}\bfseries,
+    keywordstyle=[2]\color{orange},
+    keywordstyle=[3]\color{blue}\underbar,
+    identifierstyle=,
+    commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,
+    stringstyle=\color{purple},
+    showstringspaces=false,
+    tabsize=3,
+    morekeywords={parpool, parfor, xlim, ylim, var, alpha, factorial,
+            poissrnd, normpdf, normcdf, fitrlinear, fitlm, prepdata,
+            getData, Goldstone, strcat},
+    morekeywords=[2]{system, on, off, interp},
+    morekeywords=[3]{},
+    morecomment=[l][\color{blue}]{...},        % FIXED: literal '...' not \ldots macro
+    numbers=left,
+    firstnumber=1,
+    numberstyle=\tiny\color{blue},
+    stepnumber=1,
+}
+
+% ---------------------------------------------------------------------
+% C++ listing style
+% ---------------------------------------------------------------------
+\lstdefinestyle{cppstyle}{
+    language=C++,
+    frame=single,
+    basicstyle=\small\ttfamily,
+    keywordstyle=[1]\color{blue},
+    keywordstyle=[2]\color{MyTurquoise},
+    stringstyle=\color{purple},
+    commentstyle=\color{MyDarkGreen}\slshape,
+    showstringspaces=false,
+    tabsize=4,
+    numbers=left,
+    numberstyle=\tiny\color{blue},
+    stepnumber=1,
+    breaklines=true,
+    breakatwhitespace=true,
+    captionpos=b,
+    extendedchars=true,
+    keepspaces=true,
+    morekeywords={constexpr, real_t, len_t, map, string, PowerList, array},
+    emph={ConfinementTime, STREAM, DREAM, OptionConstants, std, COEFFICIENTS},
+    emphstyle={\color{red}},
+}
+
+% ---------------------------------------------------------------------
+% Inline-code helpers
+% ---------------------------------------------------------------------
+\newcommand{\pythoncode}[1]{\lstset{style=pythonstyle}\lstinline{#1}}
+\newcommand{\matlabcode}[1]{\lstset{style=matlabstyle}\lstinline{#1}}  % FIXED: was style=Matlab
+\newcommand{\cppcode}[1]{\lstset{style=cppstyle}\lstinline{#1}}
+
+% ---------------------------------------------------------------------
+% External-script helpers (full file as a captioned listing)
+%   #1: file path/name (Matlab variant appends .m automatically)
+%   #2: caption
+% ---------------------------------------------------------------------
+\newcommand{\pythonscript}[2]{%
+    \begin{itemize}\item[]
+              \lstinputlisting[caption=#2, label=#1, style=pythonstyle]{#1}
+    \end{itemize}%
+}
+\newcommand{\matlabscript}[2]{%
+    \begin{itemize}\item[]
+              \lstinputlisting[caption=#2, label=#1, style=matlabstyle]{#1.m}
+    \end{itemize}%
+}
+\newcommand{\cppscript}[2]{%
+    \begin{itemize}\item[]
+              \lstinputlisting[caption=#2, label=#1, style=cppstyle]{#1}
+    \end{itemize}%
+}

@@ -1,0 +1,168 @@
+% =====================================================================
+% Commandes.tex
+% Custom math shortcuts, vectors, integrals, and physics-specific macros.
+% Part of the definitions-latex package.
+%
+% Required packages: amsmath, amssymb, bm, ifthen, hyperref, mhchem, bbold
+% =====================================================================
+
+% ---------------------------------------------------------------------
+% Equation tagging
+% ---------------------------------------------------------------------
+\newcommand{\numberthis}{\addtocounter{equation}{1}\tag{\theequation}}
+
+% ---------------------------------------------------------------------
+% Hyperlinks
+% ---------------------------------------------------------------------
+\newcommand{\mail}[1]{\href{mailto:#1}{#1}}
+\newcommand{\ftplink}[1]{\href{ftp://#1}{#1}}
+
+% ---------------------------------------------------------------------
+% Differentials and partial derivatives
+% ---------------------------------------------------------------------
+\newcommand{\dif}{\mathrm{d}}
+\newcommand{\fracdif}[2]{\frac{\dif #1}{\dif #2}}
+\newcommand{\dift}{\frac{\partial}{\partial t}}
+\newcommand{\partialFrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\fp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\parfrac}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\parfracu}[1]{\parfrac{}{#1}}
+\newcommand{\parfracR}{\parfracu{r}}
+
+% ---------------------------------------------------------------------
+% Vectors and unit vectors
+% ---------------------------------------------------------------------
+\newcommand{\vo}{\bm{0}}
+\newcommand{\ex}{\bm{e}_x}
+\newcommand{\ey}{\bm{e}_y}
+\newcommand{\ez}{\bm{e}_z}
+\newcommand{\er}{\bm{e}_r}
+\newcommand{\ep}{\bm{e}_\varphi}
+\newcommand{\et}{\bm{e}_{\theta}}            % FIXED: was \bm{e_}{\theta}
+\newcommand{\x}{\bm{x}}
+\newcommand{\X}{\bm{X}}
+\newcommand{\vg}{\bm{v}}
+\newcommand{\ug}{\bm{u}}
+\newcommand{\grad}{\bm{\nabla}}
+
+% Column vector of two entries
+\newcommand{\vcold}[2]{\begin{bmatrix} #1 \\ #2 \end{bmatrix}}
+
+% ---------------------------------------------------------------------
+% Brackets, norms, grouping
+% ---------------------------------------------------------------------
+\newcommand{\Abs}[1]{\left| #1 \right|}
+\newcommand{\Absfrac}[2]{\Abs{\frac{#1}{#2}}}
+\newcommand{\Absfracu}[1]{\Absfrac{\Delta #1}{#1}}
+\newcommand{\nor}[1]{\left\| #1 \right\|}    % FIXED: use \| primitive
+\newcommand{\Par}[1]{\left( #1 \right)}
+\newcommand{\Cro}[1]{\left[ #1 \right]}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\eval}[1]{\left. #1 \right|}
+
+% ---------------------------------------------------------------------
+% Integrals
+% ---------------------------------------------------------------------
+\newcommand{\intt}{\int\!\!\!\int\!\!\!\int}
+\newcommand{\diftt}{\dif x\, \dif y\, \dif z}    % FIXED: removed math-mode ~
+
+% ---------------------------------------------------------------------
+% Statistics shorthands
+% ---------------------------------------------------------------------
+\newcommand{\median}[1]{#1^{(\lceil N / 2 \rceil)}}
+\newcommand{\iid}{\overset{\mathrm{iid}}{\sim}}
+
+% ---------------------------------------------------------------------
+% Common shorthands
+% ---------------------------------------------------------------------
+\newcommand{\oover}[1]{\frac{1}{#1}}
+\newcommand{\xsover}[1]{\frac{x^*}{#1}}
+\newcommand{\kro}{\delta_{ab}}
+\newcommand{\Reyn}{\mathit{Re}}
+\newcommand{\comma}{,}                       % useful inside siunitx args
+\newcommand{\tensor}[1]{\stackrel{\leftrightarrow}{#1}}
+
+% ---------------------------------------------------------------------
+% Identity matrix (requires the bbold package)
+% ---------------------------------------------------------------------
+\newcommand{\iden}{\text{\usefont{U}{bbold}{m}{n}1}}
+\MakeRobust{\iden}
+
+% =====================================================================
+% Plasma-physics specific shorthands
+% =====================================================================
+\newcommand{\Zeff}{Z_{\mathit{eff}}}
+\newcommand{\OH}{\mathit{OH}}
+\newcommand{\kb}{k_b}
+\newcommand{\Beddy}{B_\mathit{eddy}}
+\newcommand{\prad}{P_{\mathit{rad}}}
+\newcommand{\refMath}{\mathit{ref}}
+\newcommand{\Iref}{I_\refMath}
+\newcommand{\vloop}{V_\mathit{loop}}
+\newcommand{\wall}{\mathit{wall}}
+\newcommand{\ode}{\mathit{ODE45}}
+
+% Half-step temperature
+\newcommand{\Te}{T + \Delta T / 2}
+
+% ITER open-loop scenario
+\newcommand{\OL}[1]{\mathit{ITER#1}_{OL}}
+
+% Initial densities (uses mhchem \ce)
+\newcommand{\initialdensity}[1]{n_{\ce{#10}}}
+\newcommand{\correctionDeuteriumDensity}{C_{\initialdensity{D}}}
+
+% Yield notation Y^{species A}_{species B}, with all 3x3 D/C/O combinations
+\newcommand{\YAsB}[2]{Y^{\ce{#1}}_{\ce{#2}}}
+\newcommand{\YDsD}{\YAsB{D}{D}}
+\newcommand{\YDsC}{\YAsB{D}{C}}
+\newcommand{\YDsO}{\YAsB{D}{O}}
+\newcommand{\YCsD}{\YAsB{C}{D}}
+\newcommand{\YCsC}{\YAsB{C}{C}}
+\newcommand{\YCsO}{\YAsB{C}{O}}
+\newcommand{\YOsD}{\YAsB{O}{D}}
+\newcommand{\YOsC}{\YAsB{O}{C}}
+\newcommand{\YOsO}{\YAsB{O}{O}}
+
+% ---------------------------------------------------------------------
+% Goldstone confinement-time scaling law
+% Args: 1 = density subscript, 2..9 = exponents on B_phi, I_p, n_e, a,
+%                                       R_0, kappa, A, P_Omega.
+% A zero exponent suppresses the corresponding factor entirely.
+% ---------------------------------------------------------------------
+\newcommand{\GoldstoneScalinglaw}[9]{%
+{\ifthenelse{\equal{#2}{0}}{}{B_\phi^{#2}}}\,
+{\ifthenelse{\equal{#3}{0}}{}{I_{p,\, \rm{MA}}^{#3}}}\,
+{\ifthenelse{\equal{#4}{0}}{}{n_{e,#1}^{#4}}}\,
+{\ifthenelse{\equal{#5}{0}}{}{a^{#5}}}\,
+{\ifthenelse{\equal{#6}{0}}{}{R_0^{#6}}}\,
+{\ifthenelse{\equal{#7}{0}}{}{\kappa^{#7}}}\,
+{\ifthenelse{\equal{#8}{0}}{}{A^{#8}}}\,
+{\ifthenelse{\equal{#9}{0}}{}{P_{\Omega, \, \rm{MW}}^{#9}}}%
+}
+
+% =====================================================================
+% Text helpers
+% =====================================================================
+
+% C++ logo (kept once -- the original file defined it twice)
+\newcommand{\CC}{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\tiny\bf ++}}
+
+% Roman numerals: \rom{4} -> IV
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+% =====================================================================
+% Custom appendices: "Appendix I", "Appendix II", ...
+% =====================================================================
+\newcounter{myappendix}
+\newcommand{\myappendix}[1]{%
+    \refstepcounter{myappendix}%
+    \section*{Appendix~\Roman{myappendix}: #1}%
+}
+
+% =====================================================================
+% Section numbering depth (number down to \paragraph level)
+% =====================================================================
+\setcounter{secnumdepth}{4}

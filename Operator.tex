@@ -1,0 +1,49 @@
+% =====================================================================
+% Operator.tex
+% Math operators -- behave like \sin / \log etc.
+% Part of the definitions-latex package.
+%
+% Required packages: amsmath, amssymb
+% =====================================================================
+
+% ---------------------------------------------------------------------
+% Generic
+% ---------------------------------------------------------------------
+\DeclareMathOperator{\cte}{cte}            % constant
+\DeclareMathOperator{\atanh}{atanh}        % inverse hyperbolic tangent
+\DeclareMathOperator{\sgn}{sgn}            % sign function
+\DeclareMathOperator{\extr}{extr}          % extremum
+\DeclareMathOperator{\rank}{rank}          % matrix rank
+\DeclareMathOperator{\multalg}{multalg}    % algebraic multiplicity
+\DeclareMathOperator{\ima}{i}              % imaginary unit (operator-shaped)
+
+% ---------------------------------------------------------------------
+% Probability and statistics
+% ---------------------------------------------------------------------
+\DeclareMathOperator{\esp}{\mathbb{E}}     % expectation
+\DeclareMathOperator{\var}{Var}            % variance
+\DeclareMathOperator{\std}{\sigma}         % standard deviation
+\DeclareMathOperator{\med}{median}         % median
+\DeclareMathOperator{\iqr}{IQR}            % interquartile range
+\DeclareMathOperator{\prob}{\mathbb{P}}    % probability measure
+\DeclareMathOperator{\R}{\mathbb{R}}       % real numbers
+
+% ---------------------------------------------------------------------
+% Error / regression metrics
+% ---------------------------------------------------------------------
+\DeclareMathOperator{\rmse}{RMSE}
+\DeclareMathOperator{\nrmse}{NRMSE}
+\DeclareMathOperator{\rms}{RMS}
+\DeclareMathOperator{\mse}{MSE}
+\DeclareMathOperator{\mstr}{MSTR}
+
+% ---------------------------------------------------------------------
+% Diagnostic / inferential
+% ---------------------------------------------------------------------
+\DeclareMathOperator{\vif}{VIF}
+\DeclareMathOperator{\pvalue}{\mathit{p}\text{-value}}    % FIXED: text hyphen, not minus
+
+% ---------------------------------------------------------------------
+% Mechanics
+% ---------------------------------------------------------------------
+\DeclareMathOperator{\ham}{\mathcal{H}}    % Hamiltonian
