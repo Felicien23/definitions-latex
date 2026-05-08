@@ -73,7 +73,7 @@ The CI pipeline (`.gitlab-ci.yml`) builds `demo.pdf` on every push and publishes
 
 ## Conventions
 
-- Module files are loaded in this order: `Operator.tex` → `Units.tex` → `Commandes.tex` → `LanguageStyle.tex`.
+- Module files are loaded in this order: `Operator.tex` -> `Units.tex` -> `Commandes.tex` -> `LanguageStyle.tex`.
 - Every macro is declared with `\newcommand` so accidental re-definition raises an error rather than silently overwriting.
 - Domain-specific (plasma physics, ITER, etc.) macros live in a clearly labelled section of `Commandes.tex`.
 
