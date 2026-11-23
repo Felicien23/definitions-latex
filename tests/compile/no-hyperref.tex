@@ -1,0 +1,8 @@
+% Without hyperref, \mail and \ftplink print plain text instead of failing.
+\documentclass{article}
+\usepackage{definitions}
+
+\begin{document}
+\mail{someone@example.org} and \ftplink{ftp.example.org/pub};
+\(\R\), \(\esp X\) and \(\mathbb{P}\) use the AMS blackboard font, \(\iden\) uses bbold.
+\end{document}

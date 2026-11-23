@@ -12,7 +12,8 @@ the typeset output at all.
 
 The exact dump depends on the TeX Live release (font metrics, amsmath,
 siunitx internals), so the committed reference file is only meaningful for
-the TeX Live version named in its header.
+the TeX Live release named in its header.  `check` skips (exit 0) when the
+installed TeX Live year differs from the reference.
 """
 from __future__ import annotations
 
@@ -28,6 +29,11 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 RENDER_DIR = HERE.parent / "tests" / "rendering"
 CASE_RE = re.compile(r"^BEGIN-CASE (\S+)$")
+
+
+def tex_live_year(text: str) -> str | None:
+    m = re.search(r"TeX Live (\d{4})", text)
+    return m.group(1) if m else None
 
 
 def tex_version() -> str:
@@ -140,6 +146,12 @@ def main() -> int:
     if args.cmd == "compare":
         report = compare(load(args.expected), load(args.actual))
     else:
+        ref_year = tex_live_year(args.expected.read_text().split("\n", 2)[1])
+        here_year = tex_live_year(tex_version())
+        if ref_year != here_year:
+            print(f"boxdump: SKIPPED: reference is for TeX Live {ref_year}, "
+                  f"this is TeX Live {here_year}")
+            return 0
         with tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False) as fh:
             fh.write(dump(args.source, args.mode))
             actual = Path(fh.name)

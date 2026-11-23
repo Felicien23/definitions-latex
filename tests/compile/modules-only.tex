@@ -1,0 +1,22 @@
+% "Pick and choose" use: the document loads the packages each module needs
+% and \input's the modules directly, without definitions.sty.
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{ifthen}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{siunitx}
+\usepackage[version=4]{mhchem}
+\input{Operator.tex}
+\input{Units.tex}
+\input{Commandes.tex}
+\input{LanguageStyle.tex}
+% Commandes.tex must leave @ as it found it (catcode 12 in a document).
+\newcommand{\checkat}{@}
+
+\begin{document}
+\(\fracdif{f}{x} = \esp X + \YDsC\), \qty{3}{\calorie}, \rom{12},
+\pythoncode{x = 1}, \CC{} and \checkat.
+\end{document}
