@@ -21,11 +21,11 @@
 % Differentials and partial derivatives
 % ---------------------------------------------------------------------
 \newcommand{\dif}{\mathrm{d}}
-\newcommand{\fracdif}[2]{\frac{\dif{}#1}{\dif{}#2}}
-\newcommand{\dift}{\frac{\partial}{\partial{}t}}
-\newcommand{\partialFrac}[2]{\frac{\partial#1}{\partial{}#2}}
-\newcommand{\fp}[2]{\frac{\partial{}#1}{\partial{}#2}}
-\newcommand{\parfrac}[2]{\frac{\partial{}#1}{\partial{}#2}}
+\newcommand{\fracdif}[2]{\frac{\dif#1}{\dif#2}}
+\newcommand{\dift}{\frac{\partial}{\partial{t}}}
+\newcommand{\partialFrac}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\fp}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\parfrac}[2]{\frac{\partial#1}{\partial#2}}
 \newcommand{\parfracu}[1]{\parfrac{}{#1}}
 \newcommand{\parfracR}{\parfracu{r}}
 
@@ -38,7 +38,7 @@
 \newcommand{\ez}{\bm{e}_z}
 \newcommand{\er}{\bm{e}_r}
 \newcommand{\ep}{\bm{e}_\varphi}
-\newcommand{\et}{\bm{e}_{\theta}}            % FIXED: was \bm{e_}{\theta}
+\newcommand{\et}{\bm{e}_{\theta}}
 \newcommand{\x}{\bm{x}}
 \newcommand{\X}{\bm{X}}
 \newcommand{\vg}{\bm{v}}
@@ -51,25 +51,25 @@
 % ---------------------------------------------------------------------
 % Brackets, norms, grouping
 % ---------------------------------------------------------------------
-\newcommand{\Abs}[1]{\left| #1 \right|}
+\newcommand{\Abs}[1]{\left|#1\right|}
 \newcommand{\Absfrac}[2]{\Abs{\frac{#1}{#2}}}
 \newcommand{\Absfracu}[1]{\Absfrac{\Delta#1}{#1}}
-\newcommand{\nor}[1]{\left \| #1 \right \|}    % FIXED: use \| primitive
+\newcommand{\nor}[1]{\left\Vert#1\right\Vert}
 \newcommand{\Par}[1]{\left(#1\right)}
-\newcommand{\Cro}[1]{\left[#1 \right]}
-\newcommand{\mean}[1]{\langle#1 \rangle}
-\newcommand{\eval}[1]{\left. #1 \right|}
+\newcommand{\Cro}[1]{\left[#1\right]}
+\newcommand{\mean}[1]{\langle#1\rangle}
+\newcommand{\eval}[1]{\left.#1\right|}
 
 % ---------------------------------------------------------------------
 % Integrals
 % ---------------------------------------------------------------------
-\newcommand{\intt}{\int{}\! \! \!\int{}\! \! \!\int}
-\newcommand{\diftt}{\dif{}x\, \dif{} y\, \dif{} z}    % FIXED: removed math-mode ~
+\newcommand{\intt}{\int\!\!\!\int\!\!\!\int} % \! is intended; chktex 21
+\newcommand{\diftt}{\dif{x}\,\dif{y}\,\dif{z}}
 
 % ---------------------------------------------------------------------
 % Statistics shorthands
 % ---------------------------------------------------------------------
-\newcommand{\median}[1]{#1^{(\lceil{}N / 2 \rceil)}}
+\newcommand{\median}[1]{#1^{(\lceil{N}/2\rceil)}}
 \newcommand{\iid}{\overset{\mathrm{iid}}{\sim}}
 
 % ---------------------------------------------------------------------
@@ -103,7 +103,7 @@
 \newcommand{\ode}{\mathit{ODE45}}
 
 % Half-step temperature
-\newcommand{\Te}{T + \Delta{}T / 2}
+\newcommand{\Te}{T + \Delta{T} / 2}
 
 % ITER open-loop scenario
 \newcommand{\OL}[1]{\mathit{ITER#1}_{OL}}
@@ -161,8 +161,8 @@
 % =====================================================================
 \newcounter{myappendix}
 \newcommand{\myappendix}[1]{%
-    \refstepcounter{myappendix}%
-    \section*{Appendix~\Roman{myappendix}: #1}%
+  \refstepcounter{myappendix}%
+  \section*{Appendix~\Roman{myappendix}: #1}%
 }
 
 % =====================================================================

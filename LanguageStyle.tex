@@ -59,11 +59,11 @@
     showstringspaces=false,
     tabsize=3,
     morekeywords={parpool, parfor, xlim, ylim, var, alpha, factorial,
-            poissrnd, normpdf, normcdf, fitrlinear, fitlm, prepdata,
-            getData, Goldstone, strcat},
+                  poissrnd, normpdf, normcdf, fitrlinear, fitlm, prepdata,
+                  getData, Goldstone, strcat},
     morekeywords=[2]{system, on, off, interp},
     morekeywords=[3]{},
-    morecomment=[l][\color{blue}]{...},  % chktex 11      % FIXED: literal '...' not \ldots macro
+    morecomment=[l][\color{blue}]{...},  % literal MATLAB continuation; chktex 11
     numbers=left,
     firstnumber=1,
     numberstyle=\tiny\color{blue},
@@ -100,7 +100,7 @@
 % Inline-code helpers
 % ---------------------------------------------------------------------
 \newcommand{\pythoncode}[1]{\lstset{style=pythonstyle}\lstinline{#1}}
-\newcommand{\matlabcode}[1]{\lstset{style=matlabstyle}\lstinline{#1}}  % FIXED: was style=Matlab
+\newcommand{\matlabcode}[1]{\lstset{style=matlabstyle}\lstinline{#1}}
 \newcommand{\cppcode}[1]{\lstset{style=cppstyle}\lstinline{#1}}
 
 % ---------------------------------------------------------------------
@@ -110,16 +110,16 @@
 % ---------------------------------------------------------------------
 \newcommand{\pythonscript}[2]{%
     \begin{itemize}\item[]
-              \lstinputlisting[caption=#2, label=#1, style=pythonstyle]{#1}
+        \lstinputlisting[caption=#2, label=#1, style=pythonstyle]{#1}
     \end{itemize}%
 }
 \newcommand{\matlabscript}[2]{%
     \begin{itemize}\item[]
-              \lstinputlisting[caption=#2, label=#1, style=matlabstyle]{#1.m}
+        \lstinputlisting[caption=#2, label=#1, style=matlabstyle]{#1.m}
     \end{itemize}%
 }
 \newcommand{\cppscript}[2]{%
     \begin{itemize}\item[]
-              \lstinputlisting[caption=#2, label=#1, style=cppstyle]{#1}
+        \lstinputlisting[caption=#2, label=#1, style=cppstyle]{#1}
     \end{itemize}%
 }
