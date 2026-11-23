@@ -102,11 +102,13 @@
 }
 
 % ---------------------------------------------------------------------
-% Inline-code helpers
+% Inline-code helpers.  The style is passed to \lstinline only, so it
+% does not leak into later listings.  The argument is read like any macro
+% argument: avoid %, # and unbalanced braces in it.
 % ---------------------------------------------------------------------
-\newcommand{\pythoncode}[1]{\lstset{style=pythonstyle}\lstinline{#1}}
-\newcommand{\matlabcode}[1]{\lstset{style=matlabstyle}\lstinline{#1}}
-\newcommand{\cppcode}[1]{\lstset{style=cppstyle}\lstinline{#1}}
+\newcommand{\pythoncode}[1]{\lstinline[style=pythonstyle]{#1}}
+\newcommand{\matlabcode}[1]{\lstinline[style=matlabstyle]{#1}}
+\newcommand{\cppcode}[1]{\lstinline[style=cppstyle]{#1}}
 
 % ---------------------------------------------------------------------
 % External-script helpers (full file as a captioned listing)
