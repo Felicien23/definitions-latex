@@ -1,0 +1,119 @@
+% Rendering cases for the box-dump regression test.
+% Each \mathcase / \textcase typesets one use of a macro and records the
+% exact box contents (fonts, kerns, glue, colours) in the .log file.
+% tools/boxdump.py extracts these records so that two versions of the
+% sources can be compared case by case.
+
+% ---------------------------------------------------------------- Commandes
+\textcase{mail}{\mail{someone@example.org}}
+\textcase{ftplink}{\ftplink{ftp.example.org/pub}}
+\mathcase{dif}{\dif x}
+\mathcase{fracdif}{\fracdif{f}{x}}
+\mathcase{fracdif-sum}{\fracdif{f+g}{x}}
+\mathcase{dift}{\dift}
+\mathcase{partialFrac}{\partialFrac{f}{x}}
+\mathcase{fp}{\fp{f}{x}}
+\mathcase{parfrac}{\parfrac{u}{t}}
+\mathcase{parfracu}{\parfracu{x}}
+\mathcase{parfracR}{\parfracR}
+\mathcase{vo}{\vo}
+\mathcase{ex}{\ex}
+\mathcase{ey}{\ey}
+\mathcase{ez}{\ez}
+\mathcase{er}{\er}
+\mathcase{ep}{\ep}
+\mathcase{et}{\et}
+\mathcase{x}{\x}
+\mathcase{X}{\X}
+\mathcase{vg}{\vg}
+\mathcase{ug}{\ug}
+\mathcase{grad}{\grad f}
+\mathcase{vcold}{\vcold{a}{b}}
+\mathcase{Abs}{\Abs{x+y}}
+\mathcase{Absfrac}{\Absfrac{a}{b}}
+\mathcase{Absfracu}{\Absfracu{x}}
+\mathcase{nor}{\nor{v}}
+\mathcase{Par}{\Par{a+b}}
+\mathcase{Cro}{x\Cro{a,b}y}
+\mathcase{mean}{a\mean{X}b}
+\mathcase{eval}{\eval{f}_{x=0}}
+\mathcase{intt}{\intt f}
+\mathcase{diftt}{\diftt}
+\mathcase{intt-diftt}{\intt f\,\diftt}
+\mathcase{median}{\median{x}}
+\mathcase{iid}{X\iid N}
+\mathcase{oover}{\oover{x}}
+\mathcase{xsover}{\xsover{y}}
+\mathcase{kro}{\kro}
+\mathcase{Reyn}{\Reyn}
+\mathcase{comma}{a\comma b}
+\mathcase{tensor}{\tensor{T}}
+\mathcase{iden}{\iden}
+\mathcase{Zeff}{\Zeff}
+\mathcase{OH}{\OH}
+\mathcase{kb}{\kb}
+\mathcase{Beddy}{\Beddy}
+\mathcase{prad}{\prad}
+\mathcase{refMath}{\refMath}
+\mathcase{Iref}{\Iref}
+\mathcase{vloop}{\vloop}
+\mathcase{wall}{\wall}
+\mathcase{ode}{\ode}
+\mathcase{Te}{\Te}
+\mathcase{OL}{\OL{2}}
+\mathcase{initialdensity}{\initialdensity{D}}
+\mathcase{correctionDeuteriumDensity}{\correctionDeuteriumDensity}
+\mathcase{YAsB}{\YAsB{D}{C}}
+\mathcase{YDsD}{\YDsD}
+\mathcase{YDsC}{\YDsC}
+\mathcase{YDsO}{\YDsO}
+\mathcase{YCsD}{\YCsD}
+\mathcase{YCsC}{\YCsC}
+\mathcase{YCsO}{\YCsO}
+\mathcase{YOsD}{\YOsD}
+\mathcase{YOsC}{\YOsC}
+\mathcase{YOsO}{\YOsO}
+\mathcase{Goldstone-all}{\GoldstoneScalinglaw{19}{0.8}{0.9}{0.4}{1}{1.5}{0.5}{0.2}{-0.5}}
+\mathcase{Goldstone-zeros}{\GoldstoneScalinglaw{19}{0}{0.9}{0}{1}{0}{0.5}{0}{-0.5}}
+\textcase{CC}{\CC}
+\textcase{CC-italic}{\itshape written in \CC}
+\textcase{rom}{\rom{4} \rom{14} \rom{1999}}
+
+% ----------------------------------------------------------------- Operator
+\mathcase{cte}{\cte}
+\mathcase{atanh}{\atanh x}
+\mathcase{sgn}{\sgn x}
+\mathcase{extr}{\extr f}
+\mathcase{rank}{\rank A}
+\mathcase{multalg}{\multalg\lambda}
+\mathcase{ima}{\ima}
+\mathcase{esp}{\esp X}
+\mathcase{var}{\var X}
+\mathcase{std}{\std X}
+\mathcase{med}{\med X}
+\mathcase{iqr}{\iqr X}
+\mathcase{prob}{\prob A}
+\mathcase{R}{x\in\R}
+\mathcase{rmse}{\rmse}
+\mathcase{nrmse}{\nrmse}
+\mathcase{rms}{\rms}
+\mathcase{mse}{\mse}
+\mathcase{mstr}{\mstr}
+\mathcase{vif}{\vif}
+\mathcase{pvalue}{\pvalue}
+\mathcase{ham}{\ham}
+
+% -------------------------------------------------------------------- Units
+\textcase{unit-calorie}{\si{\calorie}}
+\textcase{unit-bar}{\si{\bar}}
+\textcase{unit-rad}{\si{\rad}}
+\textcase{unit-angstrom}{\si{\angstrom}}
+\textcase{unit-eV}{\si{\eV}}
+\textcase{unit-keV}{\SI{3}{\kilo\eV}}
+
+% ------------------------------------------------------------ LanguageStyle
+\textcase{pythoncode}{\pythoncode{import numpy as np}}
+\textcase{cppcode}{\cppcode{constexpr real_t a = 1;}}
+\textcase{matlabcode}{\matlabcode{y = sum(x);}}
+\textcase{matlabcode-continuation}{\matlabcode{y = 1 + ... tail}}
+\textcase{lstinline-after-pythoncode}{\pythoncode{if x}\lstinline{if x}}
