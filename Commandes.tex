@@ -3,7 +3,9 @@
 % Custom math shortcuts, vectors, integrals, and physics-specific macros.
 % Part of the definitions-latex package.
 %
-% Required packages: amsmath, amssymb, bm, ifthen, hyperref, mhchem, bbold
+% Required packages: amsmath, amssymb, bm, ifthen, mhchem.
+% Optional: hyperref (\mail and \ftplink make links when it is loaded).
+% Fonts: \iden needs the bbold fonts installed (not the bbold package).
 % =====================================================================
 
 % ---------------------------------------------------------------------
@@ -12,10 +14,10 @@
 \newcommand{\numberthis}{\addtocounter{equation}{1}\tag{\theequation}}
 
 % ---------------------------------------------------------------------
-% Hyperlinks
+% Hyperlinks (plain text when hyperref is not loaded)
 % ---------------------------------------------------------------------
-\newcommand{\mail}[1]{\href{mailto:#1}{#1}}
-\newcommand{\ftplink}[1]{\href{ftp://#1}{#1}}
+\newcommand{\mail}[1]{\IfPackageLoadedTF{hyperref}{\href{mailto:#1}{#1}}{#1}}
+\newcommand{\ftplink}[1]{\IfPackageLoadedTF{hyperref}{\href{ftp://#1}{#1}}{#1}}
 
 % ---------------------------------------------------------------------
 % Differentials and partial derivatives
@@ -83,7 +85,8 @@
 \newcommand{\tensor}[1]{\stackrel{\leftrightarrow}{#1}}
 
 % ---------------------------------------------------------------------
-% Identity matrix (requires the bbold package)
+% Identity matrix: bbold's "1" without loading the bbold package (which
+% would replace \mathbb).  Needs the bbold fonts to be installed.
 % ---------------------------------------------------------------------
 \newcommand{\iden}{\text{\usefont{U}{bbold}{m}{n}1}}
 \MakeRobust{\iden}

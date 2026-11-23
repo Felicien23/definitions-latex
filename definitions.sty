@@ -1,13 +1,23 @@
 % =====================================================================
 % definitions.sty
-% Personal collection of LaTeX shortcuts: math commands, operators,
-% custom units, and code-listing styles.
+% Math, operator, unit and code-listing shortcuts.
+% Part of the definitions-latex package; MIT licence, see LICENSE.
 % =====================================================================
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{definitions}[2026/05/06 v1.0.0 Personal LaTeX definitions]
 
 % ---------------------------------------------------------------------
-% Required packages
+% Packages the macros need.  Load packages that take options (xcolor,
+% amsmath, siunitx, ...) BEFORE \usepackage{definitions} if you want
+% to pass options to them.
+%
+% hyperref is deliberately not loaded: it should be loaded late, by the
+% document, with the document's own options.  \mail and \ftplink make
+% links when hyperref is present and print plain text otherwise.
+%
+% bbold is deliberately not loaded either: its package replaces
+% \mathbb document-wide.  \iden selects the bbold font directly, so
+% only the bbold fonts need to be installed.
 % ---------------------------------------------------------------------
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
@@ -15,7 +25,6 @@
 \RequirePackage{ifthen}
 \RequirePackage{xcolor}
 \RequirePackage{listings}
-\RequirePackage{hyperref}
 \RequirePackage{siunitx}
 \RequirePackage[version=4]{mhchem}
 
