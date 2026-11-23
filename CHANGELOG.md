@@ -1,9 +1,59 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+What counts as a breaking change is defined in `doc/RELEASING.md`.
+
+## [Unreleased]
+
+## [2.0.0] - 2026-11-20
+
+First public release.
+
+### Changed (breaking)
+- `definitions.sty` no longer loads `hyperref`. Loading it inside the package
+  forced it early and without options, so `\usepackage[colorlinks]{hyperref}`
+  after `definitions` failed with "Option clash for package hyperref".
+  `\mail` and `\ftplink` now make links when `hyperref` is loaded and print
+  plain text otherwise. Documents that relied on the package loading
+  `hyperref` (for `\url`, `\hypersetup`, ...) must load it themselves.
+- `\pythoncode`, `\matlabcode` and `\cppcode` no longer change the default
+  `listings` style: 1.0.0 called `\lstset`, so every later listing in the
+  same group inherited the last inline style.
+
+### Fixed
+- Output that 1.0.0 changed without listing it is restored to the original
+  files: the spacing of `\Cro` (spaced like an ordinary symbol again) and
+  `\diftt` (no thin spaces between the differentials), and the MATLAB
+  listing style (bold keywords, dvipsnames Blue and Purple colours).
+  (`\intt` was already restored in 1.0.1.)
+- `\CC` and `\GoldstoneScalinglaw` used the obsolete font commands `\bf` and
+  `\rm`, which KOMA-Script classes reject; output in the standard classes is
+  unchanged.
+- `\usepackage{<dir>/definitions}`, recommended for git submodules in 1.0.0,
+  did not find the module files.  They are now loaded from the package's own
+  directory.  This replaces the unreleased `\input@path` change made after
+  1.0.1, which also changed where every later `\input` of the document was
+  searched and still preferred a stale `Commandes.tex` beside the document.
+- The package sources are also clean under `chktex -wall`.  The empty groups
+  `{}` added in 1.0.1 to silence ChkTeX are replaced by forms that need none
+  (output unchanged).
+- `\angstrom` is declared with `\AA` instead of a literal UTF-8 character.
+
+### Added
+- Reference manual `definitions-doc.pdf` listing every command with its
+  output, attached to releases (replaces `demo.tex`).
+- `examples/minimal.tex`, the README quick start.
+- Tests: compile tests with pdfLaTeX, LuaLaTeX and XeLaTeX, a rendering
+  regression test, and a test that installs the release archive in isolation.
+- `Makefile`, `.chktexrc`, release and mirroring scripts, GitLab CI that
+  publishes releases on GitLab and mirrors them to GitHub.
+- `CONTRIBUTING.md`, maintainer guides, issue and merge-request templates.
+
+### Removed
+- `demo.tex` and the tracked `demo.pdf`; see the reference manual instead.
 
 ## [1.0.1] - 2026-05-08
 
@@ -12,12 +62,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] - 2026-05-06
 
-### Added
+First packaged version (distributed privately).
 
-- Initial public release.
+### Added
 - `definitions.sty` master file that loads the four modules below and pulls in
   every required dependency (`amsmath`, `amssymb`, `bm`, `ifthen`, `xcolor`,
-  `listings`, `hyperref`, `siunitx`, `mhchem`).
+  `listings`, `hyperref`, `siunitx`, `mhchem`, `bbold`).
 - `Commandes.tex` — math shortcuts, vectors, brackets, integrals, identity
   matrix, plasma-physics macros, Goldstone scaling-law helper, custom appendices.
 - `Operator.tex` — math operators (`\sgn`, `\esp`, `\rank`, `\rmse`, `\pvalue`, …).
@@ -28,7 +78,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   PDF as a job artifact.
 
 ### Fixed
-
 - `\et` macro: was `\bm{e_}{\theta}` (subscript escaped from the bold group);
   now `\bm{e}_{\theta}`.
 - `\matlabcode`: referenced an undefined style `Matlab`; now uses `matlabstyle`,
@@ -45,3 +94,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   rather than the literal string `...`, which broke `\matlabcode` whenever
   it appeared near other macros. Now matches MATLAB's real line-continuation
   syntax.
+
+[Unreleased]: https://gitlab.com/<gitlab-namespace>/definitions-latex/-/compare/v2.0.0...main
+[2.0.0]: https://gitlab.com/<gitlab-namespace>/definitions-latex/-/releases/v2.0.0
