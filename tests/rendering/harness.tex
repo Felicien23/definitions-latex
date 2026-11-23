@@ -1,0 +1,63 @@
+% Box-dump harness for the rendering regression test.
+%
+% Usage (run from this directory, see tools/boxdump.py):
+%   pdflatex "\def\SourceDir{../../}\def\LoadMode{package}\input{harness}"
+%   pdflatex "\def\SourceDir{../../}\def\LoadMode{modules}\input{harness}"
+%
+% LoadMode=package  loads definitions.sty exactly as a user would.
+% LoadMode=modules  loads the dependency packages explicitly and then
+%                   \input's the four module files, which also works for
+%                   historical versions that had no definitions.sty.
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\providecommand{\SourceDir}{../../}
+\providecommand{\LoadMode}{package}
+\def\definitionsTestPackageMode{package}
+\ifx\LoadMode\definitionsTestPackageMode
+  \usepackage[dvipsnames]{xcolor}
+  \makeatletter
+  \def\input@path{{\SourceDir}}
+  \makeatother
+  \usepackage{definitions}
+  \usepackage{hyperref}
+\else
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{bm}
+  \usepackage{ifthen}
+  \usepackage[dvipsnames]{xcolor}
+  \usepackage{listings}
+  \usepackage{siunitx}
+  \usepackage[version=4]{mhchem}
+  \usepackage{hyperref}
+  \input{\SourceDir Operator.tex}
+  \input{\SourceDir Units.tex}
+  \input{\SourceDir Commandes.tex}
+  \input{\SourceDir LanguageStyle.tex}
+\fi
+
+\ExplSyntaxOn
+\int_set:Nn \showboxdepth { 10000 }
+\int_set:Nn \showboxbreadth { 10000 }
+\cs_new_protected:Npn \mathcase #1 #2
+  {
+    \hbox_set:Nn \l_tmpa_box { \( \displaystyle #2 \) }
+    \iow_log:n { BEGIN-CASE~#1 }
+    \box_log:N \l_tmpa_box
+    \iow_log:n { END-CASE~#1 }
+  }
+\cs_new_protected:Npn \textcase #1 #2
+  {
+    \hbox_set:Nn \l_tmpa_box { #2 }
+    \iow_log:n { BEGIN-CASE~#1 }
+    \box_log:N \l_tmpa_box
+    \iow_log:n { END-CASE~#1 }
+  }
+\ExplSyntaxOff
+
+\begin{document}
+\input{cases}
+\typeout{BEGIN-CASE secnumdepth}
+\typeout{secnumdepth=\the\value{secnumdepth}}
+\typeout{END-CASE secnumdepth}
+\end{document}

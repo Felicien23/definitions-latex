@@ -1,0 +1,15 @@
+% Whole-file helpers, and a plain listing after an inline helper (which
+% must not inherit the inline helper's style).
+\documentclass{article}
+\usepackage{definitions}
+
+\begin{document}
+\pythonscript{fixtures/example.py}{Python}
+\matlabscript{fixtures/example}{MATLAB}
+\cppscript{fixtures/example.cpp}{C++}
+
+Inline \pythoncode{print(x)}, then a plain listing:
+\begin{lstlisting}
+plain text, no frame and no line numbers
+\end{lstlisting}
+\end{document}

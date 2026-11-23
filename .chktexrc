@@ -1,0 +1,43 @@
+# ChkTeX settings for this repository.  ChkTeX reads ./.chktexrc
+# automatically when run from the repository root (as `make lint` does);
+# editors such as LaTeX Workshop pass it with `-l`.
+#
+# The arguments of \pythoncode, \matlabcode, \cppcode, \mail and \ftplink
+# are code, e-mail addresses or host names, not LaTeX prose, so ChkTeX
+# must not check their spacing and punctuation.
+#
+# ChkTeX 1.7.8 replaces (rather than extends) a list given here, so the
+# block below repeats the default WipeArg entries from the global chktexrc
+# and appends the commands of this package at the end.
+WipeArg
+{
+    \label:{} \ref:{} \eqref:{} \vref:{} \pageref:{} \index:[]{}
+    \cite:[][]{} \nocite:{}
+    \input:{} \verbatiminput:[]{} \listinginput:[]{}{}
+    \graphicspath:{}
+    \verbatimtabinput:[]{} \include:{} \includeonly:{}
+    \bibitem:[]{}
+    \cline:{} \cmidrule:[](){}
+    \href:{}{}
+    # Cleveref -- there are many others that could be here as well...
+    \cref:*{} \cpageref:*{} \crefrange:*{}{} \cpagerefrange:*{}{}
+    \Cref:*{} \Cpageref:*{} \Crefrange:*{}{} \Cpagerefrange:*{}{}
+    # natbib
+    \citet:*[][]{} \citep:*[][]{} \citealt:*{} \citealp:*[]{} \citeauthor:*{}
+    \Citet:*[][]{} \Citep:*[][]{} \Citealt:*{} \Citealp:*[]{} \Citeauthor:{}
+    \citetext:{} \citeyear:*{} \citeyearpar:{}
+    # biblatex - not including special commands
+    \autocite:*[][]{} \autocites:*[][]{} \Autocite:*[][]{} \Autocites:*[][]{}
+    \parencite:*[][]{} \parencites:*[][]{} \Parencite:*[][]{} \Parencites:*[][]{}
+    \footcite:*{} \footcites:*[][]{} \Footcite:*[][]{} \Footcites:*[][]{}
+    \textcite:*{} \textcites:*[][]{} \Textcite:*[][]{} \Textcites:*[][]{}
+    \citeauthor:*{} \citeauthors:*[][]{} \Citeauthor:*[][]{} \Citeauthors:*[][]{}
+    \citeyear:*{} \citeyears:*[][]{} \Citeyear:*[][]{} \Citeyears:*[][]{}
+    \citetitle:*{} \citetitles:*[][]{} \Citetitle:*[][]{} \Citetitles:*[][]{}
+    # tipa which uses "
+    \textipa:{}
+    # LuaTeX
+    \directlua:{} \luaescapestring:{}
+    # definitions-latex
+    \pythoncode:{} \matlabcode:{} \cppcode:{} \mail:{} \ftplink:{}
+}

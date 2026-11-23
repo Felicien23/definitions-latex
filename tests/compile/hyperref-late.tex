@@ -1,0 +1,21 @@
+% Packages with options loaded before definitions (xcolor) and after it
+% (hyperref with options, cleveref) -- 1.0.0 failed with an option clash.
+\documentclass{article}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{definitions}
+\usepackage[colorlinks]{hyperref}
+\usepackage{cleveref}
+
+\begin{document}
+\begin{align*}
+  a &= b \\
+  c &= d \numberthis\label{eq:cd}
+\end{align*}
+\Cref{eq:cd} is numbered.  Mail \mail{someone@example.org}.
+
+Fetch \ftplink{ftp.example.org/pub}.  See Appendix~\ref{app:first}.
+
+\myappendix{First}\label{app:first}
+Text.
+\paragraph{Numbered paragraph} \textcolor{OliveGreen}{secnumdepth is 4.}
+\end{document}

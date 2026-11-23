@@ -1,0 +1,7 @@
+# Normalise line endings: TeX sources and scripts are always LF so that
+# checksums of release archives do not depend on the contributor's OS.
+* text=auto eol=lf
+
+*.pdf binary
+*.png binary
+*.zip binary

@@ -44,29 +44,34 @@
 
 % ---------------------------------------------------------------------
 % MATLAB listing style
+% The cmyk values are xcolor's dvipsnames 'Blue' (1,1,0,0) and 'Purple'
+% (0.45,0.86,0,0), which this style has always used; giving them
+% explicitly means the dvipsnames option is not required.
+% \normalfont\bfseries is what the original \bf expanded to (bold roman,
+% because Computer Modern has no bold typewriter face).
 % ---------------------------------------------------------------------
 \lstloadlanguages{Matlab}%
 \lstdefinestyle{matlabstyle}{
     language=Matlab,
     frame=single,
     basicstyle=\small\ttfamily,
-    keywordstyle=[1]\color{blue}\bfseries,
+    keywordstyle=[1]\color[cmyk]{1,1,0,0}\normalfont\bfseries,
     keywordstyle=[2]\color{orange},
-    keywordstyle=[3]\color{blue}\underbar,
+    keywordstyle=[3]\color[cmyk]{1,1,0,0}\underbar,
     identifierstyle=,
     commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,
-    stringstyle=\color{purple},
+    stringstyle=\color[cmyk]{0.45,0.86,0,0},
     showstringspaces=false,
     tabsize=3,
     morekeywords={parpool, parfor, xlim, ylim, var, alpha, factorial,
-            poissrnd, normpdf, normcdf, fitrlinear, fitlm, prepdata,
-            getData, Goldstone, strcat},
+                  poissrnd, normpdf, normcdf, fitrlinear, fitlm, prepdata,
+                  getData, Goldstone, strcat},
     morekeywords=[2]{system, on, off, interp},
     morekeywords=[3]{},
-    morecomment=[l][\color{blue}]{...},  % chktex 11      % FIXED: literal '...' not \ldots macro
+    morecomment=[l][{\color[cmyk]{1,1,0,0}}]{...},  % literal MATLAB continuation; chktex 11
     numbers=left,
     firstnumber=1,
-    numberstyle=\tiny\color{blue},
+    numberstyle=\tiny\color[cmyk]{1,1,0,0},
     stepnumber=1,
 }
 
@@ -97,11 +102,13 @@
 }
 
 % ---------------------------------------------------------------------
-% Inline-code helpers
+% Inline-code helpers.  The style is passed to \lstinline only, so it
+% does not leak into later listings.  The argument is read like any macro
+% argument: avoid %, # and unbalanced braces in it.
 % ---------------------------------------------------------------------
-\newcommand{\pythoncode}[1]{\lstset{style=pythonstyle}\lstinline{#1}}
-\newcommand{\matlabcode}[1]{\lstset{style=matlabstyle}\lstinline{#1}}  % FIXED: was style=Matlab
-\newcommand{\cppcode}[1]{\lstset{style=cppstyle}\lstinline{#1}}
+\newcommand{\pythoncode}[1]{\lstinline[style=pythonstyle]{#1}}
+\newcommand{\matlabcode}[1]{\lstinline[style=matlabstyle]{#1}}
+\newcommand{\cppcode}[1]{\lstinline[style=cppstyle]{#1}}
 
 % ---------------------------------------------------------------------
 % External-script helpers (full file as a captioned listing)
@@ -110,16 +117,16 @@
 % ---------------------------------------------------------------------
 \newcommand{\pythonscript}[2]{%
     \begin{itemize}\item[]
-              \lstinputlisting[caption=#2, label=#1, style=pythonstyle]{#1}
+        \lstinputlisting[caption=#2, label=#1, style=pythonstyle]{#1}
     \end{itemize}%
 }
 \newcommand{\matlabscript}[2]{%
     \begin{itemize}\item[]
-              \lstinputlisting[caption=#2, label=#1, style=matlabstyle]{#1.m}
+        \lstinputlisting[caption=#2, label=#1, style=matlabstyle]{#1.m}
     \end{itemize}%
 }
 \newcommand{\cppscript}[2]{%
     \begin{itemize}\item[]
-              \lstinputlisting[caption=#2, label=#1, style=cppstyle]{#1}
+        \lstinputlisting[caption=#2, label=#1, style=cppstyle]{#1}
     \end{itemize}%
 }

@@ -3,7 +3,9 @@
 % Custom math shortcuts, vectors, integrals, and physics-specific macros.
 % Part of the definitions-latex package.
 %
-% Required packages: amsmath, amssymb, bm, ifthen, hyperref, mhchem, bbold
+% Required packages: amsmath, amssymb, bm, ifthen, mhchem.
+% Optional: hyperref (\mail and \ftplink make links when it is loaded).
+% Fonts: \iden needs the bbold fonts installed (not the bbold package).
 % =====================================================================
 
 % ---------------------------------------------------------------------
@@ -12,20 +14,20 @@
 \newcommand{\numberthis}{\addtocounter{equation}{1}\tag{\theequation}}
 
 % ---------------------------------------------------------------------
-% Hyperlinks
+% Hyperlinks (plain text when hyperref is not loaded)
 % ---------------------------------------------------------------------
-\newcommand{\mail}[1]{\href{mailto:#1}{#1}}
-\newcommand{\ftplink}[1]{\href{ftp://#1}{#1}}
+\newcommand{\mail}[1]{\IfPackageLoadedTF{hyperref}{\href{mailto:#1}{#1}}{#1}}
+\newcommand{\ftplink}[1]{\IfPackageLoadedTF{hyperref}{\href{ftp://#1}{#1}}{#1}}
 
 % ---------------------------------------------------------------------
 % Differentials and partial derivatives
 % ---------------------------------------------------------------------
 \newcommand{\dif}{\mathrm{d}}
-\newcommand{\fracdif}[2]{\frac{\dif{}#1}{\dif{}#2}}
-\newcommand{\dift}{\frac{\partial}{\partial{}t}}
-\newcommand{\partialFrac}[2]{\frac{\partial#1}{\partial{}#2}}
-\newcommand{\fp}[2]{\frac{\partial{}#1}{\partial{}#2}}
-\newcommand{\parfrac}[2]{\frac{\partial{}#1}{\partial{}#2}}
+\newcommand{\fracdif}[2]{\frac{\dif#1}{\dif#2}}
+\newcommand{\dift}{\frac{\partial}{\partial{t}}}
+\newcommand{\partialFrac}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\fp}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\parfrac}[2]{\frac{\partial#1}{\partial#2}}
 \newcommand{\parfracu}[1]{\parfrac{}{#1}}
 \newcommand{\parfracR}{\parfracu{r}}
 
@@ -38,7 +40,7 @@
 \newcommand{\ez}{\bm{e}_z}
 \newcommand{\er}{\bm{e}_r}
 \newcommand{\ep}{\bm{e}_\varphi}
-\newcommand{\et}{\bm{e}_{\theta}}            % FIXED: was \bm{e_}{\theta}
+\newcommand{\et}{\bm{e}_{\theta}}
 \newcommand{\x}{\bm{x}}
 \newcommand{\X}{\bm{X}}
 \newcommand{\vg}{\bm{v}}
@@ -51,25 +53,25 @@
 % ---------------------------------------------------------------------
 % Brackets, norms, grouping
 % ---------------------------------------------------------------------
-\newcommand{\Abs}[1]{\left| #1 \right|}
+\newcommand{\Abs}[1]{\left|#1\right|}
 \newcommand{\Absfrac}[2]{\Abs{\frac{#1}{#2}}}
 \newcommand{\Absfracu}[1]{\Absfrac{\Delta#1}{#1}}
-\newcommand{\nor}[1]{\left \| #1 \right \|}    % FIXED: use \| primitive
+\newcommand{\nor}[1]{\left\Vert#1\right\Vert}
 \newcommand{\Par}[1]{\left(#1\right)}
-\newcommand{\Cro}[1]{\left[#1 \right]}
-\newcommand{\mean}[1]{\langle#1 \rangle}
-\newcommand{\eval}[1]{\left. #1 \right|}
+\newcommand{\Cro}[1]{{\left[#1\right]}}
+\newcommand{\mean}[1]{\langle#1\rangle}
+\newcommand{\eval}[1]{\left.#1\right|}
 
 % ---------------------------------------------------------------------
 % Integrals
 % ---------------------------------------------------------------------
-\newcommand{\intt}{\int{}\! \! \!\int{}\! \! \!\int}
-\newcommand{\diftt}{\dif{}x\, \dif{} y\, \dif{} z}    % FIXED: removed math-mode ~
+\newcommand{\intt}{\int{}\!\!\!\int{}\!\!\!\int} % \! is intended; chktex 21
+\newcommand{\diftt}{\dif{x}\dif{y}\dif{z}}
 
 % ---------------------------------------------------------------------
 % Statistics shorthands
 % ---------------------------------------------------------------------
-\newcommand{\median}[1]{#1^{(\lceil{}N / 2 \rceil)}}
+\newcommand{\median}[1]{#1^{(\lceil{N}/2\rceil)}}
 \newcommand{\iid}{\overset{\mathrm{iid}}{\sim}}
 
 % ---------------------------------------------------------------------
@@ -83,7 +85,8 @@
 \newcommand{\tensor}[1]{\stackrel{\leftrightarrow}{#1}}
 
 % ---------------------------------------------------------------------
-% Identity matrix (requires the bbold package)
+% Identity matrix: bbold's "1" without loading the bbold package (which
+% would replace \mathbb).  Needs the bbold fonts to be installed.
 % ---------------------------------------------------------------------
 \newcommand{\iden}{\text{\usefont{U}{bbold}{m}{n}1}}
 \MakeRobust{\iden}
@@ -103,7 +106,7 @@
 \newcommand{\ode}{\mathit{ODE45}}
 
 % Half-step temperature
-\newcommand{\Te}{T + \Delta{}T / 2}
+\newcommand{\Te}{T + \Delta{T} / 2}
 
 % ITER open-loop scenario
 \newcommand{\OL}[1]{\mathit{ITER#1}_{OL}}
@@ -132,13 +135,13 @@
 % ---------------------------------------------------------------------
 \newcommand{\GoldstoneScalinglaw}[9]{%
 {\ifthenelse{\equal{#2}{0}}{}{B_\phi^{#2}}}\,
-{\ifthenelse{\equal{#3}{0}}{}{I_{p,\, \rm{MA}}^{#3}}}\,
+{\ifthenelse{\equal{#3}{0}}{}{I_{p,\,\mathrm{MA}}^{#3}}}\,
 {\ifthenelse{\equal{#4}{0}}{}{n_{e,#1}^{#4}}}\,
 {\ifthenelse{\equal{#5}{0}}{}{a^{#5}}}\,
 {\ifthenelse{\equal{#6}{0}}{}{R_0^{#6}}}\,
 {\ifthenelse{\equal{#7}{0}}{}{\kappa^{#7}}}\,
 {\ifthenelse{\equal{#8}{0}}{}{A^{#8}}}\,
-{\ifthenelse{\equal{#9}{0}}{}{P_{\Omega, \, \rm{MW}}^{#9}}}%
+{\ifthenelse{\equal{#9}{0}}{}{P_{\Omega,\,\mathrm{MW}}^{#9}}}%
 }
 
 % =====================================================================
@@ -146,7 +149,7 @@
 % =====================================================================
 
 % C++ logo (kept once -- the original file defined it twice)
-\newcommand{\CC}{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\tiny\bf ++}}
+\newcommand{\CC}{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\tiny\normalfont\bfseries++}}
 
 % Roman numerals: \rom{4} -> IV
 \newcounter{romanNumeralCounter}
@@ -161,8 +164,8 @@
 % =====================================================================
 \newcounter{myappendix}
 \newcommand{\myappendix}[1]{%
-    \refstepcounter{myappendix}%
-    \section*{Appendix~\Roman{myappendix}: #1}%
+  \refstepcounter{myappendix}%
+  \section*{Appendix~\Roman{myappendix}: #1}%
 }
 
 % =====================================================================

@@ -1,0 +1,254 @@
+% Reference manual for the definitions-latex package.
+% Build from the repository root with `make doc'.
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=25mm]{geometry}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{definitions}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{3em}
+% Reproducible builds: pdfTeX otherwise derives the PDF /ID from the
+% output path, so builds in different directories would differ.
+\ifdefined\pdftrailerid\pdftrailerid{definitions-doc}\fi
+
+\makeatletter
+\newcommand{\pkginfo}{\csname ver@definitions.sty\endcsname}
+\makeatother
+
+% One table per group of commands: input | output (as in running text) | notes.
+\newenvironment{reference}
+  {\renewcommand{\arraystretch}{1.5}%
+   \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.40\textwidth}
+                         >{\raggedright\arraybackslash}p{0.24\textwidth}
+                         >{\raggedright\arraybackslash}p{0.30\textwidth}@{}}
+   \toprule
+   Input & Output & Notes\\
+   \midrule
+   \endhead%
+   \bottomrule
+   \endfoot}
+  {\end{longtable}}
+
+\title{\textsf{definitions-latex}\\[2pt]
+  \large Reference manual}
+\author{}
+\date{\texttt{\pkginfo}}
+
+\begin{document}
+\maketitle
+
+\section{Overview}
+
+\textsf{definitions-latex} is a collection of shortcuts for mathematics,
+physics notation, \textsf{siunitx} units and \textsf{listings} code styles.
+Load all of it with
+\begin{verbatim}
+\usepackage{definitions}
+\end{verbatim}
+The package loads \textsf{amsmath}, \textsf{amssymb}, \textsf{bm},
+\textsf{ifthen}, \textsf{xcolor}, \textsf{listings}, \textsf{siunitx} and
+\textsf{mhchem} (version~4 syntax).  Load any of these \emph{before}
+\verb|\usepackage{definitions}| if you need to pass options to them.
+It does not load \textsf{hyperref}: load it yourself, late in the preamble,
+as usual.
+
+Installation, compatibility and support are described in
+\texttt{README.md}.  This manual lists every command with its output.
+
+\subsection*{Side effects}
+Loading the package also
+\begin{itemize}
+  \item sets \verb|secnumdepth| to~4, so \verb|\paragraph| headings are
+        numbered;
+  \item defines the colours \texttt{darkWhite}, \texttt{MyDarkGreen},
+        \texttt{MyPurple}, \texttt{MyTurquoise}, \texttt{listinggray},
+        \texttt{lbcolor} and \texttt{Darkgreen};
+  \item defines the \textsf{listings} styles \texttt{pythonstyle},
+        \texttt{matlabstyle} and \texttt{cppstyle} and the counter
+        \texttt{myappendix}.
+\end{itemize}
+
+\subsection*{Name clashes}
+Commands are defined with \verb|\newcommand| and operators with
+\verb|\DeclareMathOperator|.  A name clash therefore stops compilation
+with ``Command \dots\ already defined'' rather than silently replacing
+another package's definition.  Known clashes in \TeX\ Live~2023:
+\begin{itemize}
+  \item \textsf{physics}: \verb|\eval|, \verb|\grad|, \verb|\rank| and
+        \verb|\var|;
+  \item \textsf{commath}: \verb|\dif| and \verb|\eval|;
+  \item \textsf{tensor}: \verb|\tensor|.
+\end{itemize}
+
+\section{Derivatives and differentials}
+\begin{reference}
+\verb|\dif x| & \(\dif x\) & upright differential d\\
+\verb|\fracdif{f}{x}| & \(\fracdif{f}{x}\) & \\
+\verb|\dift| & \(\dift\) & \\
+\verb|\parfrac{f}{x}| & \(\parfrac{f}{x}\) &
+  \verb|\partialFrac| and \verb|\fp| are identical\\
+\verb|\parfracu{x}| & \(\parfracu{x}\) & operator form\\
+\verb|\parfracR| & \(\parfracR\) & \\
+\end{reference}
+
+\section{Vectors}
+\begin{reference}
+\verb|\ex|, \verb|\ey|, \verb|\ez| & \(\ex\), \(\ey\), \(\ez\) &
+  Cartesian unit vectors\\
+\verb|\er|, \verb|\ep|, \verb|\et| & \(\er\), \(\ep\), \(\et\) &
+  radial, azimuthal (\(\varphi\)) and polar (\(\theta\))\\
+\verb|\vo| & \(\vo\) & zero vector\\
+\verb|\x|, \verb|\X|, \verb|\vg|, \verb|\ug| & \(\x\), \(\X\), \(\vg\), \(\ug\) &
+  bold \(x\), \(X\), \(v\), \(u\)\\
+\verb|\grad f| & \(\grad f\) & bold nabla\\
+\verb|\vcold{a}{b}| & \(\vcold{a}{b}\) & two-component column vector\\
+\verb|\tensor{T}| & \(\tensor{T}\) & \\
+\end{reference}
+
+\section{Brackets and norms}
+\begin{reference}
+\verb|\Abs{x}| & \(\Abs{x}\) & auto-sized bars\\
+\verb|\Absfrac{a}{b}| & \(\Absfrac{a}{b}\) & \\
+\verb|\Absfracu{x}| & \(\Absfracu{x}\) & relative uncertainty\\
+\verb|\nor{v}| & \(\nor{v}\) & norm\\
+\verb|\Par{a+b}| & \(\Par{a+b}\) & auto-sized parentheses\\
+\verb|\Cro{a,b}| & \(\Cro{a,b}\) &
+  auto-sized brackets, spaced like an ordinary symbol\\
+\verb|\mean{X}| & \(\mean{X}\) & angle brackets\\
+\verb|\eval{f}_{x=0}| & \(\eval{f}_{x=0}\) & evaluation bar\\
+\end{reference}
+
+\section{Integrals, statistics and other shorthands}
+\begin{reference}
+\verb|\intt f\diftt| & \(\intt f\diftt\) & triple integral\\
+\verb|\median{x}| & \(\median{x}\) & middle order statistic\\
+\verb|X\iid\mathcal{N}| & \(X\iid\mathcal{N}\) & \\
+\verb|\oover{x}| & \(\oover{x}\) & \\
+\verb|\xsover{y}| & \(\xsover{y}\) & \\
+\verb|\kro| & \(\kro\) & Kronecker delta\\
+\verb|\Reyn| & \(\Reyn\) & Reynolds number\\
+\verb|\iden| & \(\iden\) & identity; needs the \textsf{bbold} fonts\\
+\verb|\comma| & \(\comma\) & a literal comma, e.g.\ inside
+  \textsf{siunitx} arguments\\
+\end{reference}
+
+\section{Plasma physics}
+\begin{reference}
+\verb|\Zeff| & \(\Zeff\) & effective charge\\
+\verb|\OH| & \(\OH\) & ohmic\\
+\verb|\kb| & \(\kb\) & \\
+\verb|\Beddy| & \(\Beddy\) & \\
+\verb|\prad| & \(\prad\) & radiated power\\
+\verb|\Iref| & \(\Iref\) & uses \verb|\refMath| (\(\refMath\))\\
+\verb|\vloop| & \(\vloop\) & loop voltage\\
+\verb|\wall| & \(\wall\) & for subscripts\\
+\verb|\ode| & \(\ode\) & \\
+\verb|\Te| & \(\Te\) & half-step temperature\\
+\verb|\OL{2}| & \(\OL{2}\) & ITER open-loop scenario\\
+\verb|\initialdensity{D}| & \(\initialdensity{D}\) & initial density\\
+\verb|\correctionDeuteriumDensity| & \(\correctionDeuteriumDensity\) & \\
+\verb|\YAsB{D}{C}| & \(\YAsB{D}{C}\) & yield of species A on B\\
+\verb|\YDsD| \dots\ \verb|\YOsO| & \(\YDsD\), \(\YCsO\), \dots &
+  all nine combinations of D, C and O\\
+\end{reference}
+
+\verb|\GoldstoneScalinglaw| takes nine arguments: a label for the density
+subscript followed by the exponents of \(B_\phi\), \(I_{p,\mathrm{MA}}\),
+\(n_e\), \(a\), \(R_0\), \(\kappa\), \(A\) and \(P_{\Omega,\mathrm{MW}}\).
+An exponent of~\texttt{0} omits that factor.  It typesets the product only:
+\begin{verbatim}
+\GoldstoneScalinglaw{19}{0}{0.9}{0.4}{1}{1.5}{0.5}{0}{-0.5}
+\end{verbatim}
+gives \(\GoldstoneScalinglaw{19}{0}{0.9}{0.4}{1}{1.5}{0.5}{0}{-0.5}\).
+
+\section{Operators}
+These behave like \verb|\sin|: upright, with operator spacing.
+\begin{reference}
+\verb|\esp X|, \verb|\var X|, \verb|\std X| & \(\esp X\), \(\var X\), \(\std X\) &
+  expectation, variance, standard deviation\\
+\verb|\prob A|, \verb|\med X|, \verb|\iqr X| & \(\prob A\), \(\med X\), \(\iqr X\) & \\
+\verb|\rmse|, \verb|\nrmse|, \verb|\rms| & \(\rmse\), \(\nrmse\), \(\rms\) & \\
+\verb|\mse|, \verb|\mstr|, \verb|\vif| & \(\mse\), \(\mstr\), \(\vif\) & \\
+\verb|\pvalue| & \(\pvalue\) & \\
+\verb|\sgn x|, \verb|\atanh x| & \(\sgn x\), \(\atanh x\) & \\
+\verb|\rank A|, \verb|\extr f| & \(\rank A\), \(\extr f\) & \\
+\verb|\multalg\lambda| & \(\multalg\lambda\) & algebraic multiplicity\\
+\verb|\cte|, \verb|\ima|, \verb|\ham| & \(\cte\), \(\ima\), \(\ham\) &
+  constant, imaginary unit, Hamiltonian\\
+\verb|x\in\R| & \(x\in\R\) & \\
+\end{reference}
+
+\section{Units}
+For use inside \textsf{siunitx} commands.  Of these units,
+\verb|\calorie| and \verb|\rad| are additions, while \verb|\bar|,
+\verb|\angstrom| and \verb|\eV| already exist in \textsf{siunitx}~3 and are
+declared again with the same output so that the module also works on its
+own.
+\begin{reference}
+\verb|\qty{4.2}{\calorie}| & \qty{4.2}{\calorie} & \\
+\verb|\qty{2}{\rad}| & \qty{2}{\rad} & \\
+\verb|\qty{1}{\bar}| & \qty{1}{\bar} & \\ % unit, not the accent; chktex 14
+\verb|\qty{0.5}{\angstrom}| & \qty{0.5}{\angstrom} & \\
+\verb|\qty{3}{\kilo\eV}| & \qty{3}{\kilo\eV} & \\
+\end{reference}
+
+\section{Text helpers}
+\begin{reference}
+\verb|\CC| & \CC{} & \\
+\verb|\rom{14}| & \rom{14} & upper-case Roman numeral\\
+\verb|\mail{a@example.org}| & \mail{a@example.org} &
+  a \texttt{mailto:} link with \textsf{hyperref}, plain text without\\
+\verb|\ftplink{ftp.example.org}| & \ftplink{ftp.example.org} & likewise\\
+\end{reference}
+
+\verb|\numberthis| numbers a single line of an unnumbered display such as
+\verb|align*|:
+\begin{verbatim}
+\begin{align*}
+  a &= b \\
+  c &= d \numberthis\label{eq:cd}
+\end{align*}
+\end{verbatim}
+\begin{align*}
+  a &= b \\
+  c &= d \numberthis\label{eq:cd}
+\end{align*}
+so that \verb|\eqref{eq:cd}| gives~\eqref{eq:cd}.
+
+\verb|\myappendix{Title}| starts an unnumbered section headed
+``Appendix~\rom{1}: Title'', ``Appendix~\rom{2}: \dots'' and so on.  A
+\verb|\label| placed after it records the counter \texttt{myappendix},
+which \verb|\ref| prints in Arabic numerals unless you add
+\begin{verbatim}
+\renewcommand{\themyappendix}{\Roman{myappendix}}
+\end{verbatim}
+
+\section{Code listings}
+The styles \texttt{pythonstyle}, \texttt{matlabstyle} and \texttt{cppstyle}
+can be used with any \textsf{listings} command, for example
+\verb|\begin{lstlisting}[style=pythonstyle]|.  The inline helpers apply one
+of them to a short snippet:
+\begin{reference}
+\verb|\pythoncode{import numpy as np}| & \pythoncode{import numpy as np} & \\
+\verb|\matlabcode{y = sum(x);}| & \matlabcode{y = sum(x);} & \\
+\verb|\cppcode{constexpr int n = 3;}| & \cppcode{constexpr int n = 3;} & \\
+\end{reference}
+Their argument is read like any macro argument, so it must not contain
+\texttt{\%}, \texttt{\#} or unbalanced braces; use \verb|\lstinline| with a
+delimiter for those.
+
+The file helpers typeset a whole file as a captioned, indented listing
+labelled with the file name:
+\begin{verbatim}
+\pythonscript{file}{caption}
+\matlabscript{file}{caption}  % adds the .m extension itself
+\cppscript{file}{caption}
+\end{verbatim}
+For example, \verb|\matlabscript{listings/example}{A MATLAB file}| gives
+
+\matlabscript{listings/example}{A MATLAB file}
+
+\end{document}
