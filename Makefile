@@ -2,7 +2,8 @@
 #
 #   make                 build the reference manual and the minimal example
 #   make lint            ChkTeX on every LaTeX source (must report nothing)
-#   make test            lint + compile tests + rendering regression test
+#   make test            lint + compile tests (pdfLaTeX, LuaLaTeX, XeLaTeX)
+#                        + rendering regression test
 #   make dist            build dist/ (zip, manual, SHA256SUMS) and test the zip
 #   make check-release TAG=v2.0.0   version/changelog consistency for a tag
 #   make clean
@@ -22,6 +23,8 @@ VERSION       := $(shell tools/version.sh)
 # Unwrapped log lines for tools/check_log.py.
 export max_print_line := 10000
 LATEXMK := latexmk -pdf -interaction=nonstopmode -halt-on-error
+# latexmk engine switches for the compile tests
+ENGINES := pdf lualatex xelatex
 
 .PHONY: all doc example lint test test-compile test-rendering rendering-reference \
         dist check-release clean
@@ -57,12 +60,14 @@ lint:
 test: lint test-compile test-rendering example doc
 
 test-compile:
-	@for t in $(COMPILE_TESTS); do \
-	  (cd tests/compile && TEXINPUTS=../..: $(LATEXMK) -outdir=../../build/tests/$$t $$t.tex >/dev/null 2>&1) \
-	    || { echo "test-compile: $$t FAILED (build/tests/$$t/$$t.log)"; exit 1; }; \
-	  python3 tools/check_log.py build/tests/$$t/$$t.log || exit 1; \
-	  echo "ok   $$t"; \
-	done
+	@for e in $(ENGINES); do for t in $(COMPILE_TESTS); do \
+	  out=build/tests/$$e/$$t; \
+	  (cd tests/compile && TEXINPUTS=../..: latexmk -$$e -interaction=nonstopmode -halt-on-error \
+	      -outdir=../../$$out $$t.tex >/dev/null 2>&1) \
+	    || { echo "test-compile: $$e $$t FAILED ($$out/$$t.log)"; exit 1; }; \
+	  python3 tools/check_log.py $$out/$$t.log || exit 1; \
+	  echo "ok   $$e $$t"; \
+	done; done
 
 test-rendering:
 	python3 tools/boxdump.py check --expected $(RENDERING_REF)
