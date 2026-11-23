@@ -44,18 +44,23 @@
 
 % ---------------------------------------------------------------------
 % MATLAB listing style
+% The cmyk values are xcolor's dvipsnames 'Blue' (1,1,0,0) and 'Purple'
+% (0.45,0.86,0,0), which this style has always used; giving them
+% explicitly means the dvipsnames option is not required.
+% \normalfont\bfseries is what the original \bf expanded to (bold roman,
+% because Computer Modern has no bold typewriter face).
 % ---------------------------------------------------------------------
 \lstloadlanguages{Matlab}%
 \lstdefinestyle{matlabstyle}{
     language=Matlab,
     frame=single,
     basicstyle=\small\ttfamily,
-    keywordstyle=[1]\color{blue}\bfseries,
+    keywordstyle=[1]\color[cmyk]{1,1,0,0}\normalfont\bfseries,
     keywordstyle=[2]\color{orange},
-    keywordstyle=[3]\color{blue}\underbar,
+    keywordstyle=[3]\color[cmyk]{1,1,0,0}\underbar,
     identifierstyle=,
     commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,
-    stringstyle=\color{purple},
+    stringstyle=\color[cmyk]{0.45,0.86,0,0},
     showstringspaces=false,
     tabsize=3,
     morekeywords={parpool, parfor, xlim, ylim, var, alpha, factorial,
@@ -63,10 +68,10 @@
                   getData, Goldstone, strcat},
     morekeywords=[2]{system, on, off, interp},
     morekeywords=[3]{},
-    morecomment=[l][\color{blue}]{...},  % literal MATLAB continuation; chktex 11
+    morecomment=[l][{\color[cmyk]{1,1,0,0}}]{...},  % literal MATLAB continuation; chktex 11
     numbers=left,
     firstnumber=1,
-    numberstyle=\tiny\color{blue},
+    numberstyle=\tiny\color[cmyk]{1,1,0,0},
     stepnumber=1,
 }
 
