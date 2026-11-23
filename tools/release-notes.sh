@@ -17,5 +17,6 @@ notes=$(awk -v v="$version" '
 printf '%s\n' "$notes"
 if [ $# -ge 2 ]; then
     printf '\n---\nCanonical release: %s\n' "$2"
-    printf 'Verify downloads with SHA256SUMS: `sha256sum -c SHA256SUMS`\n'
+    # shellcheck disable=SC2016  # literal backticks for Markdown
+    printf '%s\n' 'Verify downloads with SHA256SUMS: `sha256sum -c SHA256SUMS`'
 fi

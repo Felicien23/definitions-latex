@@ -19,11 +19,13 @@ printf '%s\n' "$tag" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$' \
 version=$(tools/version.sh)
 date=$(tools/version.sh --date)
 [ "$tag" = "v$version" ] || fail "tag $tag does not match definitions.sty version $version"
+[ "$(cat VERSION)" = "$version" ] || fail "VERSION file says '$(cat VERSION)', definitions.sty says $version"
 grep -Fqx "## [$version] - $date" CHANGELOG.md \
     || fail "CHANGELOG.md has no heading '## [$version] - $date'"
-if grep -rn --include='*.md' --include='*.yml' --include='*.cff' \
-        -e '<gitlab-namespace>' -e '<github-owner>' . 2>/dev/null | grep -v '^./tools/'; then
-    fail "placeholder links remain (see above)"
+# Tracked and new (not ignored) files, except tools/ which names the placeholders.
+if git ls-files -z -co --exclude-standard -- . ':!tools/' \
+        | xargs -0 grep -n -e '<gitlab-namespace>' -e '<github-owner>' 2>/dev/null; then
+    fail "placeholder links remain (see above); run tools/set-project-urls.sh"
 fi
 [ $status -eq 0 ] && echo "check-release: $tag is consistent (version $version, $date)"
 exit $status
