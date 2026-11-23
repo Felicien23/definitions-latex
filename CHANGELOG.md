@@ -8,7 +8,7 @@ What counts as a breaking change is defined in `doc/RELEASING.md`.
 
 ## [Unreleased]
 
-## [2.0.0] - 2026-11-20
+## [2.0.0] - 2026-11-23
 
 First public release.
 
@@ -95,5 +95,5 @@ First packaged version (distributed privately).
   it appeared near other macros. Now matches MATLAB's real line-continuation
   syntax.
 
-[Unreleased]: https://gitlab.com/<gitlab-namespace>/definitions-latex/-/compare/v2.0.0...main
-[2.0.0]: https://gitlab.com/<gitlab-namespace>/definitions-latex/-/releases/v2.0.0
+[Unreleased]: https://gitlab.com/Scorptunorone/definitions-latex/-/compare/v2.0.0...main
+[2.0.0]: https://gitlab.com/Scorptunorone/definitions-latex/-/releases/v2.0.0

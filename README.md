@@ -1,7 +1,7 @@
 # definitions-latex
 
-**Canonical repository: [definitions-latex on GitLab](https://gitlab.com/<gitlab-namespace>/definitions-latex).**
-The [GitHub repository](https://github.com/<github-owner>/definitions-latex)
+**Canonical repository: [definitions-latex on GitLab](https://gitlab.com/Scorptunorone/definitions-latex).**
+The [GitHub repository](https://github.com/Felicien23/definitions-latex)
 is a read-only mirror kept in sync automatically. Please report issues and submit
 merge requests on GitLab (see [Contributing](#contributing-and-support)).
 
@@ -60,7 +60,7 @@ want these shortcuts without redefining them in every project.
 ## Installation
 
 Download `definitions-latex-<version>.zip` from the
-[GitLab releases](https://gitlab.com/<gitlab-namespace>/definitions-latex/-/releases)
+[GitLab releases](https://gitlab.com/Scorptunorone/definitions-latex/-/releases)
 (the same files are attached to the GitHub releases). Check it with the
 `SHA256SUMS` file from the same release:
 
@@ -187,9 +187,9 @@ GitLab CI runs the same targets on every merge request; see
 ## Releases and versioning
 
 Releases are published on the
-[GitLab releases page](https://gitlab.com/<gitlab-namespace>/definitions-latex/-/releases)
+[GitLab releases page](https://gitlab.com/Scorptunorone/definitions-latex/-/releases)
 (canonical) and mirrored to the
-[GitHub releases page](https://github.com/<github-owner>/definitions-latex/releases)
+[GitHub releases page](https://github.com/Felicien23/definitions-latex/releases)
 with identical files: the zip, the reference manual and `SHA256SUMS`.
 
 Versions follow [Semantic Versioning](https://semver.org/). The version and
@@ -207,7 +207,7 @@ Maintainers: [doc/RELEASING.md](doc/RELEASING.md) and
 ## Contributing and support
 
 Issues and merge requests go to the
-[GitLab project](https://gitlab.com/<gitlab-namespace>/definitions-latex).
+[GitLab project](https://gitlab.com/Scorptunorone/definitions-latex).
 GitHub pull requests are not merged, because GitHub is a mirror; see
 [CONTRIBUTING.md](CONTRIBUTING.md) for how to send the change to GitLab.
 

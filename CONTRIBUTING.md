@@ -1,7 +1,7 @@
 # Contributing
 
 Thank you for helping. The canonical repository is the
-[GitLab project](https://gitlab.com/<gitlab-namespace>/definitions-latex);
+[GitLab project](https://gitlab.com/Scorptunorone/definitions-latex);
 issues, discussion and merge requests happen there only.
 
 ## Reporting a problem or requesting a command
@@ -12,7 +12,7 @@ warning from the `.log` file, and the output of `pdflatex --version`.
 
 ## Coming from GitHub
 
-The [GitHub repository](https://github.com/<github-owner>/definitions-latex) is a
+The [GitHub repository](https://github.com/Felicien23/definitions-latex) is a
 read-only mirror: it is overwritten from GitLab and nothing merged there would
 survive. Pull requests opened on GitHub are not merged; they are closed with a
 link back here. To send a change:

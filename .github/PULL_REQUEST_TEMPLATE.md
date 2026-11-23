@@ -1,6 +1,6 @@
 **This GitHub repository is a read-only mirror. Pull requests opened here are not merged.**
 
-Development happens on GitLab: https://gitlab.com/<gitlab-namespace>/definitions-latex
+Development happens on GitLab: https://gitlab.com/Scorptunorone/definitions-latex
 
 Please open a merge request there instead (you can sign in to GitLab with a
 GitHub account); `CONTRIBUTING.md` explains how, including how to send a patch

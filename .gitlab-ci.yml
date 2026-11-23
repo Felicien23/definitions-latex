@@ -26,7 +26,7 @@ stages:
 
 variables:
   # The GitHub mirror (owner/name).  Not secret; see doc/MIRRORING.md.
-  GITHUB_REPOSITORY: "<github-owner>/definitions-latex"
+  GITHUB_REPOSITORY: "Felicien23/definitions-latex"
   # Default off.  Set PUBLISH_TO_GITHUB=true in Settings > CI/CD > Variables
   # once the mirror has been set up and the history audit is done.
   PUBLISH_TO_GITHUB: "false"
