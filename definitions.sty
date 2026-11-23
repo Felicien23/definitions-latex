@@ -24,6 +24,11 @@
 % Commandes (which can rely on them); LanguageStyle last because it
 % only adds listing styles.
 % ---------------------------------------------------------------------
+\makeatletter
+\providecommand*\input@path{}
+\edef\input@path{\input@path{\CurrentFilePath}}
+\makeatother
+
 \input{Operator.tex}
 \input{Units.tex}
 \input{Commandes.tex}
