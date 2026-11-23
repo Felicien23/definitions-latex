@@ -1,11 +1,8 @@
-# =====================================================================
 # LaTeX build artefacts
-# =====================================================================
 *.aux
 *.bbl
 *.bcf
 *.blg
-*.brf
 *.dvi
 *.fdb_latexmk
 *.fls
@@ -19,29 +16,24 @@
 *.out
 *.run.xml
 *.snm
-*.synctex
-*.synctex(busy)
 *.synctex.gz
-*.synctex.gz(busy)
+*.synctex(busy)
 *.toc
 *.vrb
 *.xdv
 
-# Bibliography
-*-blx.bib
-*-blx.aux
+# Generated PDFs: the reference manual and examples are built by `make`
+# and attached to releases, never committed.
+*.pdf
 
-# Build directories
-_minted-*/
-build/
-out/
+# Build and release output
+/build/
+/dist/
 
-# Uncomment to keep PDFs out of the repo
-# *.pdf
+# Python bytecode from the tools/ scripts
+__pycache__/
 
-# =====================================================================
-# OS / editor noise
-# =====================================================================
+# OS and editor noise
 .DS_Store
 Thumbs.db
 *~
