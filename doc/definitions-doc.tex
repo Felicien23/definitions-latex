@@ -10,6 +10,9 @@
 \usepackage{definitions}
 \usepackage[hidelinks]{hyperref}
 \setlength{\emergencystretch}{3em}
+% Reproducible builds: pdfTeX otherwise derives the PDF /ID from the
+% output path, so builds in different directories would differ.
+\ifdefined\pdftrailerid\pdftrailerid{definitions-doc}\fi
 
 \makeatletter
 \newcommand{\pkginfo}{\csname ver@definitions.sty\endcsname}
