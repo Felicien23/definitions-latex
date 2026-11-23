@@ -3,7 +3,7 @@
 % Math, operator, unit and code-listing shortcuts.
 % Part of the definitions-latex package; MIT licence, see LICENSE.
 % =====================================================================
-\NeedsTeXFormat{LaTeX2e}
+\NeedsTeXFormat{LaTeX2e}[2021/11/15]% \IfPackageLoadedTF, \CurrentFilePath
 \ProvidesPackage{definitions}[2026/05/06 v1.0.0 Personal LaTeX definitions]
 
 % ---------------------------------------------------------------------
@@ -29,18 +29,23 @@
 \RequirePackage[version=4]{mhchem}
 
 % ---------------------------------------------------------------------
-% Load each module. Order matters: operators and units before
-% Commandes (which can rely on them); LanguageStyle last because it
-% only adds listing styles.
+% Load the modules from the directory that contains this file, so that
+% \usepackage{<dir>/definitions} works without changing TEXINPUTS and a
+% stray copy of a module next to the document is not picked up instead.
+% (\CurrentFilePath is empty when the package was found through a
+% TEXINPUTS or TEXMF search path; the modules are then found the same way.)
+% Commandes.tex ends with \makeatother, so @ is made a letter again after
+% each module.
+% Order matters: operators and units first, LanguageStyle last.
 % ---------------------------------------------------------------------
-\makeatletter
-\providecommand*\input@path{}
-\edef\input@path{\input@path{\CurrentFilePath}}
-\makeatother
-
-\input{Operator.tex}
-\input{Units.tex}
-\input{Commandes.tex}
-\input{LanguageStyle.tex}
+\edef\definitions@dir{\CurrentFilePath}% chktex 41
+\ifx\definitions@dir\@empty\else % chktex 41
+  \edef\definitions@dir{\definitions@dir/}% chktex 41
+\fi % chktex 41
+\newcommand*\definitions@load[1]{\input{\definitions@dir#1}\makeatletter}% chktex 27
+\definitions@load{Operator.tex}
+\definitions@load{Units.tex}
+\definitions@load{Commandes.tex}
+\definitions@load{LanguageStyle.tex}
 
 \endinput
